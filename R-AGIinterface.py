@@ -25,7 +25,6 @@ from tkinter.ttk import Frame, Button, Label, Style
 from tkinter import ttk 
 from tkinter import filedialog
 
-filepath = 0
 
 # This class C1 actually creates the the leftmost frame, which itself contains
 # a grid on its own.
@@ -45,7 +44,6 @@ class C1(Frame):
         
         
         def openfile():
-            global filepath
             filepath = filedialog.askopenfilename()
             chest = Image.open(filepath).resize((300, 300), Image.ANTIALIAS)
             chestjov = ImageTk.PhotoImage(chest) 
@@ -57,7 +55,12 @@ class C1(Frame):
         # Label 1: the title of the first frame.
         lbl1 = Label(self, text="1. Upload X-Ray", font=('Helvetica', 24, 'bold'))
         lbl1.grid(pady=18, padx=5)
-        
+
+        chest = Image.open("test.jpg").resize((300, 300), Image.ANTIALIAS)
+        chestjov = ImageTk.PhotoImage(chest) 
+        label1 = Label(self, image=chestjov)
+        label1.image = chestjov
+        label1.grid(row=1, column=0, padx=30, pady=7)
         
         # The Browse button.
         abtn = Button(self, text="Browse",command=openfile)
@@ -119,16 +122,10 @@ class C3(Frame):
         
         
         # The text box showing the results
-        area = Text(self, height=8, width=16, font=("Helvetica", 18))
+        area = Text(self, height=8, width=32, font=("Helvetica", 18))
         area.grid(row=4, column=0, rowspan=1, padx=16, pady=10)
         
-        # The resulting image that was outputted from the program
-        if (filepath != 0):
-            chest = Image.open(filepath).resize((163, 163), Image.ANTIALIAS)
-            chestjov = ImageTk.PhotoImage(chest)
-            label1 = Label(self, image=chestjov)
-            label1.image = chestjov
-            label1.grid(row=4, column=1, padx=30, pady=7)
+
 
         
         
@@ -142,7 +139,6 @@ class Example(Frame):
     def initUI(self):
         self.master.title("R-AGI Interface")
         self.pack(fill=BOTH, expand=True)
-
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)
@@ -164,7 +160,7 @@ class Example(Frame):
 
 def main():
     root = Tk()
-    root.geometry("900x550")
+    root.geometry("1000x600")
     app = Example()
     root.mainloop()
 
