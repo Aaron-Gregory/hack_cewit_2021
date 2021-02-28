@@ -52,9 +52,6 @@ class C1(Frame):
             label1.grid(row=1, column=0, padx=30, pady=7)
             
             
-        # Label 1: the title of the first frame.
-        lbl1 = Label(self, text="1. Upload X-Ray", font=('Helvetica', 24, 'bold'))
-        lbl1.grid(pady=18, padx=5)
 
         chest = Image.open("test.jpg").resize((300, 300), Image.ANTIALIAS)
         chestjov = ImageTk.PhotoImage(chest) 
@@ -85,9 +82,6 @@ class C2(Frame):
         self.rowconfigure(0, weight=1)
         
         
-        # Label 2: the title of the second frame
-        lbl2 = Label(self, text="2. Progress", font=('Helvetica', 24, 'bold'))
-        lbl2.grid(row=0, column=0, pady=18, padx=5)
         
         
         # The three labels that show the progress of the program 
@@ -115,10 +109,6 @@ class C3(Frame):
         self.rowconfigure(2, weight=1)
         self.rowconfigure(3, weight=1)
         
-        
-        # Label 3: the title of the third frame
-        lbl3 = Label(self, text="3. Results", font=('Helvetica', 24, 'bold'))
-        lbl3.grid(row=3, column=0, pady=18, padx=5)
         
         
         # The text box showing the results
