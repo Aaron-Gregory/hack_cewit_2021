@@ -37,10 +37,9 @@ class C1(Frame):
     # Allowing these columns/rows
     def initUI(self):
         self.columnconfigure(0, weight=1)
-        self.rowconfigure(0, weight=1)
-        self.rowconfigure(1, weight=1)
-        self.rowconfigure(2, weight=1)
-        self.rowconfigure(3, weight=1)
+        for y in range(30):
+            self.rowconfigure(y, weight=1)
+
         
         
         def openfile():
@@ -50,14 +49,6 @@ class C1(Frame):
             label1 = Label(self, image=chestjov)
             label1.image = chestjov
             label1.grid(row=1, column=0, padx=30, pady=7)
-            
-            
-
-        chest = Image.open("test.jpg").resize((300, 300), Image.ANTIALIAS)
-        chestjov = ImageTk.PhotoImage(chest) 
-        label1 = Label(self, image=chestjov)
-        label1.image = chestjov
-        label1.grid(row=1, column=0, padx=30, pady=7)
         
         # The Browse button.
         abtn = Button(self, text="Browse",command=openfile)
@@ -67,10 +58,7 @@ class C1(Frame):
         abtn = Button(self, text="Process",)    
         abtn.grid(row=3, column=0, pady=15)
         
-        separator = ttk.Separator(self, orient=VERTICAL)
-        separator.grid(column=1, row=0, rowspan=5, sticky='ns')
-        
-        
+'''       
 class C2(Frame):
     def __init__(self, p):
         super().__init__(p)
@@ -93,7 +81,7 @@ class C2(Frame):
         
         lbl23 = Label(self, text="Deep Analysis (In Progress)", font=('Helvetica', 18))
         lbl23.grid(row=3, column=0, pady=18, padx=5)
-
+'''
     
         
 class C3(Frame):
@@ -104,17 +92,16 @@ class C3(Frame):
 
     def initUI(self):
         self.columnconfigure(0, weight=1)
-        self.rowconfigure(0, weight=1)
-        self.rowconfigure(1, weight=1)
-        self.rowconfigure(2, weight=1)
-        self.rowconfigure(3, weight=1)
+        for y in range(30):
+            self.rowconfigure(y, weight=1)
         
         
         
         # The text box showing the results
-        area = Text(self, height=8, width=32, font=("Helvetica", 18))
-        area.grid(row=4, column=0, rowspan=1, padx=16, pady=10)
-        
+        #area = Text(self, height=8, width=32, font=("Helvetica", 18))
+        area = Text(self, width=60, font=("Helvetica", 18))
+        area.grid(row=4, column=0, padx=16, pady=10)
+
 
 
         
@@ -129,22 +116,26 @@ class Example(Frame):
     def initUI(self):
         self.master.title("R-AGI Interface")
         self.pack(fill=BOTH, expand=True)
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=1)
-        self.columnconfigure(2, weight=1)
-        self.columnconfigure(3, weight=1)
-        self.rowconfigure(0, weight=1)
-        self.rowconfigure(1, weight=1)
-        self.rowconfigure(2, weight=1)
-        self.rowconfigure(3, weight=1)
+        for x in range(30):
+            self.columnconfigure(x, weight=1)
+        #self.columnconfigure(1, weight=1)
+        #self.columnconfigure(2, weight=1)
+        #self.columnconfigure(3, weight=1)
+        for y in range(30):
+            self.rowconfigure(y, weight=1)
+        #self.rowconfigure(1, weight=1)
+        #self.rowconfigure(2, weight=1)
+        #self.rowconfigure(3, weight=1)
 
 
         c1 = C1(self)
-        c1.grid(row=0, column=0, rowspan=2, sticky=N, pady=18, padx=5)
-        c2 = C2(self)
-        c2.grid(row=0, column=1, pady=18, padx=5)
-        c2 = C3(self)
-        c2.grid(row=1, column=1, sticky=S, pady=18, padx=5)
+        c1.config(borderwidth=1,relief=RIDGE)
+        c1.grid(row=0, column=0, rowspan=2, sticky=N+S+E+W, pady=18, padx=5)
+        #c2 = C2(self)
+        #c2.grid(row=0, column=1, pady=18, padx=5)
+        c3 = C3(self)
+        c3.config(borderwidth=1,relief=RIDGE)
+        c3.grid(row=0, column=1, sticky=N+S+E+W, pady=18, padx=5)
         
 
 
